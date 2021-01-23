@@ -89,7 +89,7 @@ export default function LoginForm(): React.ReactElement {
          <AppBar
             position="static"
             elevation={3}
-            style={{ backgroundColor: "white", width: "150%" }}
+            style={{ backgroundColor: "white" }}
          >
             <Toolbar>
                <img
@@ -161,6 +161,20 @@ export default function LoginForm(): React.ReactElement {
                                        <Text
                                           property={
                                              VCARD.organization_name.iri.value
+                                          }
+                                          edit={editing}
+                                          autosave
+                                       />
+                                    </Typography>
+                                    <Typography
+                                       gutterBottom
+                                       variant="subtitle1"
+                                       component="h3"
+                                    >
+                                       <AccountBoxIcon color="primary" />
+                                       <Text
+                                          property={
+                                             VCARD.role.iri.value
                                           }
                                           edit={editing}
                                           autosave
