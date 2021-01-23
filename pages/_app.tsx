@@ -1,39 +1,28 @@
-/**
- * Copyright 2020 Inrupt Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
- * Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
- * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
- * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-
 import { SessionProvider } from "@inrupt/solid-ui-react";
 
-/* eslint react/jsx-props-no-spreading: 0 */
-
 interface IApp {
-  Component: React.ComponentType<any>;
-  pageProps: any;
+   Component: React.ComponentType<any>;
+   pageProps: any;
 }
 
 export default function App(props: IApp): React.ReactElement {
-  const { Component, pageProps } = props;
+   const { Component, pageProps } = props;
 
-  return (
-    <SessionProvider sessionId="react-sdk-example-project">
-      <Component {...pageProps} />
-    </SessionProvider>
-  );
+   return (
+      <>
+         <SessionProvider sessionId="react-sdk-example-project">
+            <Component {...pageProps} />
+         </SessionProvider>
+         <style jsx global>{`
+            body {
+               background-color: #f4f6f8;
+               height: 100vh;
+               display: "flex";
+               overflow: "hidden";
+               width: "100%";
+               margin: 0;
+            }
+         `}</style>
+      </>
+   );
 }

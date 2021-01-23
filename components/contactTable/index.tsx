@@ -112,7 +112,7 @@ export default function ContactTable({
     const { thing: rowThing } = useThing();
     return (
       <DeleteIcon color="error" onClick={() => removeRow(rowThing)}></DeleteIcon>
-     
+
     );
   };
 
@@ -196,7 +196,7 @@ export default function ContactTable({
               onChange={(e) => setNewContactValue(e.target.value)}
             />
             <AddCircleOutlineIcon color="primary" onClick={addContactDetail}></AddCircleOutlineIcon>
-           
+
           </Box>
         </>
       )}

@@ -14,6 +14,7 @@
     "@inrupt/solid-ui-react": "^1.2.1",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "@solid/lit-term": "^0.4.1",
     "next": "9.5.2",
     "react": "16.13.1",

@@ -1,0 +1,10 @@
+.logoItem {
+    height: 6rem;
+    
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+   
+}

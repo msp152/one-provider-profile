@@ -1,56 +1,158 @@
-/**
- * Copyright 2020 Inrupt Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
- * Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
- * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
- * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-
 import { useState, useEffect } from "react";
 import { LoginButton } from "@inrupt/solid-ui-react";
-import { Button, TextField, FormGroup, Container } from "@material-ui/core";
+import {
+   Container,
+   Grid,
+   Typography,
+   Avatar,
+   Button,
+   Box,
+} from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardActions from "@material-ui/core/CardActions";
+import LinkIcon from "@material-ui/icons/Link";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import styles from "./loginForm.module.css";
 
 export default function LoginForm(): React.ReactElement {
-  const [idp, setIdp] = useState("https://solidcommunity.net");
-  const [currentUrl, setCurrentUrl] = useState("https://localhost:3000");
+   const [solidIdp, setSolidIdp] = useState("https://solidcommunity.net");
+   const [inruptIdp, setInruptIdp] = useState("https://inrupt.net");
+   const [currentUrl, setCurrentUrl] = useState("https://localhost:3000");
 
-  useEffect(() => {
-    setCurrentUrl(window.location.href);
-  }, [setCurrentUrl]);
+   useEffect(() => {
+      setCurrentUrl(window.location.href);
+   }, [setCurrentUrl]);
 
-  return (
-    <Container fixed>
-      <FormGroup>
-        <TextField
-          label="Identity Provider"
-          placeholder="Identity Provider"
-          type="url"
-          value={idp}
-          onChange={(e) => setIdp(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <LoginButton oidcIssuer={idp} redirectUrl={currentUrl}>
-                <Button variant="contained" color="primary">
-                  Log&nbsp;in
-                </Button>
-              </LoginButton>
-            ),
-          }}
-        />
-      </FormGroup>
-    </Container>
-  );
+   return (
+      <div style={{ display: "flex", height: "100vh", flex: "1 1 auto" }}>
+         <Container maxWidth="md">
+            <Grid
+               container
+               direction="column"
+               justify="center"
+               alignItems="center"
+               spacing={3}
+               style={{
+                  borderRadius: "1rem",
+                  border: "1px solid #676e7726",
+                  marginTop: "10rem",
+               }}
+            >
+               <Grid item>
+                  <img
+                     className={styles.logoItem}
+                     src="/opp-logo.png"
+                     alt="opp-logo"
+                  />
+               </Grid>
+               <Grid item>
+                  <Typography
+                     style={{
+                        color: "#676e77",
+                        fontWeight: 400,
+                        fontSize: "1.2rem",
+                        textTransform: "uppercase",
+                     }}
+                     variant="h6"
+                  >
+                     Connect your pods
+                  </Typography>
+               </Grid>
+               <Grid item style={{ width: "100%" }}>
+                  <Grid
+                     container
+                     direction="row"
+                     justify="center"
+                     alignItems="center"
+                     spacing={3}
+                  >
+                     <Grid item style={{ width: "43%" }}>
+                        <Card>
+                           <CardHeader
+                              avatar={<Avatar src="/solid-logo.svg"></Avatar>}
+                              title="Solid Community"
+                              subheader="https://solidcommunity.net"
+                           />
+                           <CardActions>
+                              <Box
+                                 display="flex"
+                                 flexDirection="column"
+                                 justifyContent="center"
+                              >
+                                 <LoginButton
+                                    oidcIssuer={solidIdp}
+                                    redirectUrl={currentUrl}
+                                 >
+                                    <Button
+                                       size="large"
+                                       className={styles.button}
+                                       startIcon={<LinkIcon />}
+                                    >
+                                       Connect to an existing pod
+                                    </Button>
+                                 </LoginButton>
+                                 <LoginButton
+                                    oidcIssuer={solidIdp}
+                                    redirectUrl={currentUrl}
+                                 >
+                                    <Button
+                                       size="large"
+                                       className={styles.button}
+                                       startIcon={<AddBoxIcon />}
+                                    >
+                                       Create a new pod
+                                    </Button>
+                                 </LoginButton>
+                              </Box>
+                           </CardActions>
+                        </Card>
+                     </Grid>
+                     <Grid item style={{ width: "43%" }}>
+                        <Card>
+                           <CardHeader
+                              avatar={<Avatar src="/inrupt.jpeg"></Avatar>}
+                              title="Inrupt Community"
+                              subheader="https://inrupt.net"
+                           />
+                           <CardActions>
+                              <Box
+                                 display="flex"
+                                 flexDirection="column"
+                                 justifyContent="center"
+                              >
+                                 <LoginButton
+                                    oidcIssuer={inruptIdp}
+                                    redirectUrl={currentUrl}
+                                 >
+                                    <Button
+                                       size="large"
+                                       style={{ width: "100%" }}
+                                       startIcon={<LinkIcon />}
+                                    >
+                                       Connect to an existing pod
+                                    </Button>
+                                 </LoginButton>
+                                 <LoginButton
+                                    oidcIssuer={inruptIdp}
+                                    redirectUrl={currentUrl}
+                                 >
+                                    <Button
+                                       size="large"
+                                       className={styles.button}
+                                       startIcon={<AddBoxIcon />}
+                                    >
+                                       Create a new pod
+                                    </Button>
+                                 </LoginButton>
+                              </Box>
+                           </CardActions>
+                        </Card>
+                     </Grid>
+                  </Grid>
+               </Grid>
+            </Grid>
+         </Container>
+      </div>
+   );
 }
